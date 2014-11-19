@@ -12,9 +12,8 @@ namespace SharpSort
         {
             Sorter sort = new Sorter();
 
-            int[] test = new int[] { 9, 6, 3, 4, 8 };
+            int[] test = new int[] { 0,1,2,3,4,5,6,7,8,9,10,11,12 };
             PrintArray(test);
-            Console.WriteLine();
 
             int[] final = sort.BogoSort(test);
             PrintArray(final);
@@ -25,9 +24,10 @@ namespace SharpSort
 
         static void PrintArray(int[] array)
         {
+            Console.WriteLine();
             foreach (int i in array)
             {
-                Console.Write(i);
+                Console.Write(i + " ");
             }
             Console.WriteLine();
         }
