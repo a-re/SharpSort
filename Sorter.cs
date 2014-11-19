@@ -9,7 +9,7 @@ namespace SharpSort
     class Sorter
     {
         public Sorter() { }
-
+        private Random r = new Random();
         public int[] BogoSort(int[] input)
         {
 
@@ -18,7 +18,7 @@ namespace SharpSort
         //ref keyword is like passing a pointer argument :D
         private void BogoShuffle(ref int[] input)
         {
-
+            input[r.Next(input.Length + 1)] = input[r.Next(input.Length + 1)];
         }
     }
 }
