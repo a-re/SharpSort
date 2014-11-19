@@ -9,16 +9,35 @@ namespace SharpSort
     class Sorter
     {
         public Sorter() { }
-        private Random r = new Random();
+
+        Random r = new Random();
+        bool sorted = false;
+
         public int[] BogoSort(int[] input)
         {
-
+            while(!sorted)
+            {
+                for (int i = 0; i < input.Length - 1; i++)
+                {
+                    if (i == input.Length - 1) { sorted = true; continue; } //This cleverly breaks out of the while AND for
+                    if (input[i] < input[i + 1] || input[i] == input[i + 1])
+                    {
+                        //At least one is sorted, continue.
+                        continue;
+                    }
+                    BogoShuffle(ref input);
+                }
+            }
+            return input;
         }
 
         //ref keyword is like passing a pointer argument :D
         private void BogoShuffle(ref int[] input)
         {
-            input[r.Next(input.Length + 1)] = input[r.Next(input.Length + 1)];
+            //These vars are here just for debugging
+            int r1 = r.Next(input.Length + 1);
+            int r2 = r.Next(input.Length + 1);
+            input[r1] = input[r2];
         }
     }
 }
