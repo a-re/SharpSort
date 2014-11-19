@@ -18,6 +18,9 @@ namespace SharpSort
 
             int[] final = sort.BogoSort(test);
             PrintArray(final);
+            
+            //Before exiting, pause to see results
+            Console.ReadKey();
         }
 
         static void PrintArray(int[] array)
