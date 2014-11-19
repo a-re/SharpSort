@@ -8,28 +8,46 @@ namespace SharpSort
 
         Random r = new Random();
         bool sorted = false;
-
+        int l;
+        #region BogoSort!
         public int[] BogoSort(int[] input)
         {
-            loop: while(!sorted)
+            while(!sorted)
             {
-                for (int l = 0; l < input.Length; l++)
+                for (l = 0; l < input.Length; l++)
                 {
-                    if (l == input.Length - 1) 
+                    #region WORKING CODE
+                    //if (l == input.Length - 1) 
+                    //{
+                    //    Console.Write("EXITING: ");
+                    //    foreach (int intt in input) { Console.Write(intt + " "); }
+                    //    sorted = true; break;
+                    //}
+                    //if (input[l] > input[l + 1])
+                    //{
+                    //    l = 0;
+                    //    BogoShuffle(input);
+                    //    continue;
+                    //}
+                    #endregion
+                    if (l >= input.Length)
                     {
+                        if (input[l - 1] > input[l])
+                        {
+                            l = 0;
+                            BogoShuffle(input);
+                            continue;
+                        }
                         Console.Write("EXITING: ");
                         foreach (int intt in input) { Console.Write(intt + " "); }
-                        sorted = true;
-                        goto loop; 
+                        sorted = true; break;
                     }
-                    if (input[l] < input[l + 1])
+                    if (input[l] > input[l + 1])
                     {
-                        //Console.WriteLine("Shuffling..."); 
                         l = 0;
                         BogoShuffle(input);
                         continue;
                     }
-                    //Console.WriteLine("Sorted! input[l]: " + input[l] + "  input[l + 1]: " + input[l + 1]);
                 }
             }
             return input;
@@ -37,10 +55,6 @@ namespace SharpSort
 
         private void BogoShuffle(int[] input)
         {
-            //Console.Write("BEFORE: ");
-            //foreach (int intt in input) { Console.Write(intt); }
-            //Console.WriteLine();
-
             bool tempNum = false;
             int rand = 0;
             for (int l = 0; l < input.Length; l++)
@@ -54,11 +68,8 @@ namespace SharpSort
                 int atRand = input[l];
                 input[l] = input[rand];
                 input[rand] = atRand;
-
-                //Console.WriteLine("l: " + l + " rand: " + rand);
-                //foreach (int intt in input) { Console.Write(intt); }
-                //Console.WriteLine();
             }
         }
+        #endregion
     }
 }
