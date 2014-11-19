@@ -34,10 +34,7 @@ namespace SharpSort
         //ref keyword is like passing a pointer argument :D
         private void BogoShuffle(ref int[] input)
         {
-            //These vars are here just for debugging
-            int r1 = r.Next(input.Length + 1);
-            int r2 = r.Next(input.Length + 1);
-            input[r1] = input[r2];
+            input[r.Next(input.Length)] = input[r.Next(input.Length)];
         }
     }
 }
