@@ -41,6 +41,17 @@ namespace SharpSort
         }
 
         //Optimizes this for multiprocessor systems!
-        static int[][] SplitArray
+        static int[][] SplitArray(int[] inArray, int procs)
+        {
+            /* Let's say we have a 7-value array and 4 procs
+             * fuck it
+             */
+            bool done = false;
+            while (!done)
+            {
+                int firstDiv = inArray.Length / procs //Little integer division hack, this is like Math.min()
+
+            }       
+        }
     }
 }
