@@ -14,18 +14,35 @@ namespace SharpSort
         {
             while(!sorted)
             {
+                //for (l = 0; l < input.Length + 1; l++)
+                //{
+                //    if (l == input.Length - 1)
+                //    {
+                //        sorted = true; break;
+                //    }
+                //    if (input[l] > input[l + 1])
+                //    {
+                //        l = 0;
+                //        BogoShuffle(input);
+                //        continue;
+                //    }
+                //    Console.Write("FOR: Array at end of l = " + l + ": ");
+                //    foreach (int temp in input) { Console.Write(temp); } Console.WriteLine();
+                //}      
                 for (l = 0; l < input.Length + 1; l++)
                 {
                     if (l == input.Length - 1)
                     {
                         sorted = true; break;
                     }
-                    if (input[l] > input[l + 1])
+                    if (input[l] > input[l + 1] || input[0] > input[1])
                     {
                         l = 0;
                         BogoShuffle(input);
                         continue;
                     }
+                    //Console.Write("FOR: Array at end of l = " + l + ": ");
+                    //foreach (int temp in input) { Console.Write(temp); } Console.WriteLine();
                 }      
             }
             return input;
