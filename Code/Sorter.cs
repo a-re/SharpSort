@@ -10,36 +10,14 @@ namespace SharpSort
         bool sorted = false;
         int l;
         #region BogoSort!
-        public int[] BogoSort(int[] input)
+        public int[] BogoSort(int[] input, int TEMPTYPE)
         {
             while(!sorted)
             {
-                for (l = 0; l < input.Length; l++)
+                for (l = 0; l < input.Length + 1; l++)
                 {
-                    #region WORKING CODE
-                    //if (l == input.Length - 1) 
-                    //{
-                    //    Console.Write("EXITING: ");
-                    //    foreach (int intt in input) { Console.Write(intt + " "); }
-                    //    sorted = true; break;
-                    //}
-                    //if (input[l] > input[l + 1])
-                    //{
-                    //    l = 0;
-                    //    BogoShuffle(input);
-                    //    continue;
-                    //}
-                    #endregion
-                    if (l >= input.Length)
+                    if (l == input.Length - 1)
                     {
-                        if (input[l - 1] > input[l])
-                        {
-                            l = 0;
-                            BogoShuffle(input);
-                            continue;
-                        }
-                        Console.Write("EXITING: ");
-                        foreach (int intt in input) { Console.Write(intt + " "); }
                         sorted = true; break;
                     }
                     if (input[l] > input[l + 1])
@@ -48,7 +26,7 @@ namespace SharpSort
                         BogoShuffle(input);
                         continue;
                     }
-                }
+                }      
             }
             return input;
         }
@@ -56,7 +34,7 @@ namespace SharpSort
         private void BogoShuffle(int[] input)
         {
             bool tempNum = false;
-            int rand = 0;
+            int rand = 0, atRand = 0;
             for (int l = 0; l < input.Length; l++)
             {
                 while(!tempNum)
@@ -65,7 +43,7 @@ namespace SharpSort
                     if (rand != l) { tempNum = true; }
                 }
 
-                int atRand = input[l];
+                atRand = input[l];
                 input[l] = input[rand];
                 input[rand] = atRand;
             }
