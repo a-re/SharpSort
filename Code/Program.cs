@@ -28,7 +28,7 @@ namespace SharpSort
 
             ////Before exiting, pause to see results
             int[] splitTest = new int[] { 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 };
-            int[][] splitResult = SplitArray(splitTest, Environment.ProcessorCount);
+            int[][] splitResult = SplitArray(splitTest, Environment.ProcessorCount); Console.WriteLine(splitResult.Length);
             throw new Exception();
             //Console.ReadKey();
         }
@@ -58,7 +58,7 @@ namespace SharpSort
             {
                 for (i = 0; i < firstDiv; i++)
                 {
-
+                    ret[i] = new int[firstDiv];
                 }
                 for (x = 0; x < procs; x++)
                 {
