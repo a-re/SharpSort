@@ -27,7 +27,10 @@ namespace SharpSort
             //#endregion
 
             ////Before exiting, pause to see results
-            Console.ReadKey();
+            int[] splitTest = new int[] { 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 };
+            int[][] splitResult = SplitArray(splitTest, Environment.ProcessorCount);
+            throw new Exception();
+            //Console.ReadKey();
         }
 
         static void PrintArray(int[] array)
@@ -47,11 +50,27 @@ namespace SharpSort
              * fuck it
              */
             bool done = false;
+            int[][] ret = new int[procs][];
+            int i, x, y;
+            int tempCount = 0;
+            int firstDiv = inArray.Length / procs; 
             while (!done)
             {
-                int firstDiv = inArray.Length / procs //Little integer division hack, this is like Math.min()
+                for (i = 0; i < firstDiv; i++)
+                {
 
-            }       
+                }
+                for (x = 0; x < procs; x++)
+                {
+                    for (y = tempCount; y < firstDiv; y++)
+                    {
+                        ret[x][y] = inArray[tempCount];
+                    }
+                    tempCount += y;
+                }
+                done = true; 
+            }
+            return ret;
         }
     }
 }
