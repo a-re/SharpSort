@@ -26,7 +26,7 @@ namespace SharpSort
             //Console.WriteLine("BogoSort on array with " + test.Length + " elements took " + (ms2 - ms1) + "ms");
             //#endregion
 
-            ////Before exiting, pause to see results
+            //Before exiting, pause to see results
             int[] splitTest = new int[] { 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 };
             int[][] splitResult = SplitArray(splitTest, Environment.ProcessorCount); Console.WriteLine(splitResult.Length);
             throw new Exception();
