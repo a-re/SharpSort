@@ -27,8 +27,10 @@ namespace SharpSort
             //#endregion
 
             //Before exiting, pause to see results
-            int[] splitTest = new int[] { 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 };
-            int[][] splitResult = SplitArray(splitTest, Environment.ProcessorCount); Console.WriteLine(splitResult.Length);
+            int[] splitTest = new int[] { 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 };
+            int[][] splitResult = SplitArray(splitTest, Environment.ProcessorCount); 
+
+            Console.WriteLine(splitResult.Length);
             throw new Exception();
             //Console.ReadKey();
         }
@@ -43,33 +45,38 @@ namespace SharpSort
             Console.WriteLine();
         }
 
-        //Optimizes this for multiprocessor systems!
+        /* Optimizes this for multiprocessor systems! */
         static int[][] SplitArray(int[] inArray, int procs)
         {
-            /* Let's say we have a 7-value array and 4 procs
-             * fuck it
-             */
-            bool done = false;
             int[][] ret = new int[procs][];
-            int i, x, y;
-            int tempCount = 0;
-            int firstDiv = inArray.Length / procs; 
-            while (!done)
+            int tmpCount = 0;
+            int div = inArray.Length / procs;
+            int mod = inArray.Length % procs;
+            bool useMod = mod != 0;
+
+            Console.WriteLine("mod: " + mod);
+            Console.WriteLine("useMod: " + useMod);
+            /* Initialize the elements of the jagged array */
+            for (int i = 0; i < procs; i++)
             {
-                for (i = 0; i < firstDiv; i++)
+                if (useMod)
                 {
-                    ret[i] = new int[firstDiv];
+                    ret[i] = new int[div + mod];
+                    useMod = false;
                 }
-                for (x = 0; x < procs; x++)
-                {
-                    for (y = tempCount; y < firstDiv; y++)
-                    {
-                        ret[x][y] = inArray[tempCount];
-                    }
-                    tempCount += y;
-                }
-                done = true; 
+                ret[i] = new int[div];
             }
+
+            /* Initialize the jagged array with the split inArray */
+            for (int i = 0; i < procs; i++) /* Here, i is the collection of elements of the jagged array that runs on one core */
+            {
+                for (int l = 0; l < div; l++) /* Here, l is what each core is getting */
+                {
+                    ret[i][l] = inArray[tmpCount];
+                    tmpCount++;
+                }
+            }
+
             return ret;
         }
     }
