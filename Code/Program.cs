@@ -54,15 +54,13 @@ namespace SharpSort
             int mod = inArray.Length % procs;
             bool useMod = mod != 0;
 
-            Console.WriteLine("mod: " + mod);
-            Console.WriteLine("useMod: " + useMod);
             /* Initialize the elements of the jagged array */
             for (int i = 0; i < procs; i++)
             {
                 if (useMod)
                 {
                     ret[i] = new int[div + mod];
-                    useMod = false;
+                    useMod = false; continue;
                 }
                 ret[i] = new int[div];
             }
